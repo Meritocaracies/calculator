@@ -17,6 +17,7 @@ body {
 }
 
 .display {
+    height: 37px;
     background-color: #222;
     color: #fff;
     text-align: right;
@@ -52,11 +53,12 @@ body {
     grid-column: span 2;
 }
 
-button:nth-child(5n) {
+/* Specific styling for operation buttons */
+.button.operation {
     background-color: #ff9500;
     color: white;
 }
 
-button:nth-child(5n):hover {
+.button.operation:hover {
     background-color: #e08400;
 }
