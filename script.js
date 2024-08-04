@@ -1,5 +1,6 @@
 let init = 'off'; 
 let display = 0;
+let overflow = false;
 let state;
 let display2;
 let total = 0;
@@ -24,9 +25,7 @@ function opperand(symbol) {
     opp = symbol;
     init = 'second'
         var num1 = document.getElementById('display').innerHTML;
-        document.getElementById('display').innerHTML = num1 + '+';
-        state = 'addition';
-}
+        document.getElementById('display').innerHTML = num1 + symbol;}
 
 function appendToDisplay(input) {
     if (init=='off') {
@@ -57,7 +56,10 @@ function appendToDisplay(input) {
     }
 
 function calculateResult() {
-    if (opp=='+')
+    if (opp=='/' && secondnum=='0') {
+        render('X_X')
+    }
+    else if (opp=='+')
     {total = add(firstnum,secondnum);
     render(total)}
     else if (opp=='-')
@@ -78,10 +80,19 @@ function clearDisplay() {
         firstnum = 0;
         secondnum = 0;
         total = '';
+        overflow = false;
     
 }
 
 function render(toDisplay) {
+    var display = document.getElementById('display').innerHTML;
+    if (parseInt(display)>9999999999999 || overflow==true) {
+        overflow = true;
+        document.getElementById('display').innerHTML = 'Too Big';
+        
+    }
+    else {
     document.getElementById('display').innerHTML = "     ";
     document.getElementById('display').innerHTML = toDisplay;
+    }
 }
